@@ -12,6 +12,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
+        //Створити List Юзерів
         ArrayList<User> users = new ArrayList<>();
         users.add(new User("vasya", 31, false));
         users.add(new User("petya", 30, true));
@@ -24,12 +25,14 @@ public class Main {
         users.add(new User("masha", 30, true));
         users.add(new User("olya", 31, false));
         users.add(new User("max", 31, true));
-
+        //- відсортувати  за  віком (зростання , а потім окремо спадання за допомоги методу sort)
         //Collections.sort(users, (User u1, User u2) -> u1.getAge() - u2.getAge());
         users.sort(Comparator.comparingInt(User::getAge));
         users.sort((u1, u2) -> u2.getAge() - u1.getAge());
+        //- відсортувати його за кількістю знаків в імені  (зростання , а потім окремо спадання)
         users.sort(Comparator.comparingInt((User u) -> u.getName().length()));
         users.sort((u1, u2) -> u2.getName().length() - u1.getName().length());
+        //створити ArrayList зі словами на 15-20 елементів.
         ArrayList<String> list = new ArrayList<>();
         list.add("java");
         list.add("python");
@@ -51,11 +54,21 @@ public class Main {
         list.add("ruby");
         list.add("pascal");
         list.add("git");
+        //- відсортувати його за алфавітом
         list.sort(String::compareToIgnoreCase);
         System.out.println(list);
-        //users.sort(Comparator.comparing(User::getName));
-        //users.sort((u1, u2) -> u2.getName().compareTo(u1.getName()));
-
+        //Створити клас котрий відповідає наступній моделі
+        //{
+        //    id: 1,
+        //    name: 'vasya',
+        //    surname: 'pupkin',
+        //    email: 'asd@asd.com',
+        //    age: 31,
+        //    gender: 'MALE',
+        //    skills: [{title: 'java', exp: 10}, {title: 'js', exp: 10}, {title: 'c++', exp: 10}],
+        //    car: {model: 'toyota', year: 2021, power: 250}
+        //}
+        //Клас взяв з lesson2
 
         Skill[] vasyaSkills = {
                 //3
@@ -264,12 +277,12 @@ public class Main {
         personHashSet.add(andrii);
         personHashSet.add(masha);
         personHashSet.add(dasha);
-
+        //Створити HashSet з 10 об'єктів, проітерувати її, видалити всіх чоловіків
         personHashSet.removeIf(person -> person.getGender().equals(Gender.MALE));
         for (Person person : personHashSet) {
             System.out.println(person.getName());
         }
-
+        //Створити TreeSet з 10 об'єктів, посортовану за кількістю скілів від меньшого до більшого
         TreeSet<Person> personTreeSet = new TreeSet<>(Comparator.comparingInt(o -> o.getSkills().length));
         personTreeSet.add(vasya);
         personTreeSet.add(petro);
@@ -282,7 +295,7 @@ public class Main {
         personTreeSet.add(masha);
         personTreeSet.add(dasha);
 
-        //System.out.println(personTreeSet);
+        System.out.println(personTreeSet);
 
         ZooClub zooClub = new ZooClub();
         ZooMember vasya1 = new ZooMember("Vasya");
@@ -290,7 +303,6 @@ public class Main {
         zooClub.setMember(vasya1);
         zooClub.setMember(vika);
         zooClub.setPet(vika, new Pet("kokos", 2));
-        //System.out.println(zooClub);
         zooClub.setPet(vasya1, new Pet("kokos", 3));
         zooClub.setPet(vasya1, new Pet("tom", 5));
         zooClub.showZooClub();
